@@ -1,0 +1,61 @@
+{% extends 'myapp/basic.html' %}
+{% load static %}
+{% load myfilter %}
+
+{% block title %}
+Registraction Form
+{% endblock title %}
+
+{% block css %}
+ <style>
+    body{
+        background-color: aqua;
+    }
+    .errorlist{
+        color: #f51414;
+    }
+    .register-form{
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+        margin-top: 40px;
+        padding: 20px;
+        background-color: rgb(1, 9, 15);
+        color: antiquewhite;
+        border-top: #2c08f7;
+        border-radius: 5px;
+    }
+    .mainheading{
+        text-align: center;
+    }
+    /* .main-area{
+        display: flex;
+        align-items: center;
+        /* background-color: aqua; */
+    /* } */ 
+ </style>
+{% endblock css %}
+
+{% block body %}
+<div class="container my-5 main-area "  >
+    <div class="register-form">
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <!-- {{form.as_p}} -->
+        {{ form.non_field_erros }}
+        <h2 class="mainheading" >Wonder Shop</h2>
+        <h4 class="mainheading" >SignUp Form For Seller</h4>
+        
+        <label for="id_gst" class="login-labels my-2">GST No.*</label>
+        {{ form.gst.errors }}
+        {{ form.gst|addclass:'form-control' |addplaceholder:'Enter GST Number*'}}
+        <label for="id_wherwhouse_location" class="login-labels my-2">Wherhouse Location*</label>
+        {{ form.wherwhouse_location.errors }}
+        {{ form.wherwhouse_location|addclass:'form-control' |addplaceholder:'Enter Wherhouse Location*'}}
+        
+        <button type="submit" class="btn btn-primary my-2">Signup</button>
+    </form>
+</div>
+</div>
+
+{% endblock body %}
